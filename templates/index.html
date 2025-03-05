@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<title>Milyrics</title>
+<body>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+
+    <form class="dates_input" action="/" method="post">
+        <input name="query" type="text"  placeholder="זרוק שיר..."/>
+        <button name="sendBtn" type="submit">זרקתי</button>
+    </form>
+         {% for i in range(songs|length) %}
+    <a href="/{{songs[i]}}/{{artists[i]}}">{{songs[i]}} | {{artists[i]}} </a> <br>
+         {% endfor %}
+</body>
+</html>

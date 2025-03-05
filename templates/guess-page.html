@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<title>Milyrics</title>
+<body>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+        <h1>
+            {{song_name}} | {{singer}}
+            </h1>
+        <input type="text" id="userInput" placeholder="זרוק מילה.."><br><br>
+    <div id="lyrics-container">
+        {% include 'words-part.html' %}
+    </div>
+    <form action="/reset/" method="post">
+        <button name="reset" type="submit">RESET</button>
+    </form>
+    <form action="/give-up/" method="post">
+        <button name="give-up" type="submit">give-up</button>
+    </form>
+    <form action="/" method="get">
+        <button name="back" type="submit">back</button>
+    </form>
+    <script>
+
+        document.getElementById('userInput').addEventListener('input', function() {
+            let inputValue = this.value;
+
+            fetch(window.location.pathname, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ input_value: inputValue, song:  "{{song}}"})
+            })
+            .then(response => response.text())  // Get HTML response
+            .then(html => {
+                document.getElementById('lyrics-container').innerHTML = html;  // Update lyrics section
+                console.log(document.getElementById('true'))
+                if (document.getElementById('true') != null) {
+                    this.value = "";
+                    console.log("empty")
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+</html>

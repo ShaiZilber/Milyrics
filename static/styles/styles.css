@@ -1,0 +1,23 @@
+h1 {
+    color: white;
+}
+body {
+    background-color: black;
+    direction: rtl;
+}
+
+h5 {
+    margin: 0px;
+    margin-bottom: 5px;
+    padding: 0;
+    vertical-align: top;
+    text-align: right;
+    color: white;
+    direction: rtl;
+}
+.known {
+    color: white;
+}
+.unknown {
+    color: red;
+}
