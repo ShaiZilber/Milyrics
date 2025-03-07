@@ -36,7 +36,7 @@
             let songsList = document.getElementById('songsList');
             songsList.innerHTML = '';
 
-            for (let song of lyricsData['data']) {
+            for (let song of lyricsData) {
                 if (song.song.toLowerCase().includes(query)) {
                     let songLink = document.createElement('a');
                     songLink.href = '#';
