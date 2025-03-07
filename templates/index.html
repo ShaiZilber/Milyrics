@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milyrics</title>
-    <link rel="stylesheet" type="text/css" href="C:\\Users\\zilbe\\Documents\\programingProjects\\Milyrics\\milyrics\\static\\styles\\styles.css">
+    <link rel="stylesheet" type="text/css" href="..\\static\\styles\\styles.css">
 </head>
 <body>
     <form id="searchForm">
@@ -26,7 +26,7 @@
         let correct = [];
 
         async function loadLyrics() {
-            let response = await fetch('C:\\Users\\zilbe\\Documents\\programingProjects\\Milyrics\\milyrics\\templates\\lyrics.json').then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error loading JSON:', error));
+            let response = await fetch('lyrics.json').then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error loading JSON:', error));
             lyricsData = await response.json();
         }
 
