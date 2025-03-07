@@ -27,7 +27,7 @@
 
         async function loadLyrics() {
             let response = await fetch('lyrics.json');
-            lyricsData = await response.json();
+            lyricsData = await JSON.parse(response);
         }
 
         document.getElementById('searchForm').addEventListener('submit', function(e) {
