@@ -52,7 +52,7 @@
             document.getElementById('songsList').style.display = 'none';
             document.getElementById('gameContainer').style.display = 'block';
             document.getElementById('songTitle').textContent = `${song.song} | ${song.artist}`;
-            words = song.words;
+            words = song.songs;
             correct = new Array(words.length).fill(false);
             updateLyricsDisplay();
         }
