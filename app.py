@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import csv
 app = Flask(__name__)
@@ -94,8 +96,19 @@ def find():
         return render_template("index.html", songs=songs, artists=singers)
 
 def main():
+    s = "["
+    with open("lyrics.csv", "r", encoding="utf8") as f:
+        csvdata = csv.DictReader(f, fieldnames=['artist', 'songs', 'song', 'artist_key', 'url', 'words count',
+                                                'unique words count'])
+        next(csvdata)
+        for row in csvdata:
+            s += f"{json.dumps(row,ensure_ascii=False)},"
+    s += "]"
+    with open("lyrics.json", "w",  encoding="utf8") as f:
+        f.write(s)
 
-    app.run()
+    print(s)
+    #app.run()
 
 
 
