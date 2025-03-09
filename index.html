@@ -15,6 +15,7 @@
     <div id="songsList"></div>
     <div id="gameContainer" style="display:none;">
         <h1 id="songTitle"></h1>
+        <h2 id="uniqueAmount"></h2>
         <input type="text" id="userInput" placeholder="Guess a word...">
         <div id="lyricsContainer"></div>
         <button id="resetBtn">RESET</button>
@@ -87,12 +88,15 @@ function drawConfetti() {
             document.getElementById('gameContainer').style.display = 'block';
             document.getElementById('songTitle').textContent = `${song.song} | ${song.artist}`;
             words = JSON.parse(song.songs.replace(/'/g, '"'));
+            document.getElementById('uniqueAmount').textContent = `0/${[new Set(words)[0].size}`;
+            
             correct = new Array(words.length).fill(false);
             updateLyricsDisplay();
         }
 
         function updateLyricsDisplay(giveUp = false) {
             let isfull = true;
+            let counter = 0;
             let lyricsContainer = document.getElementById('lyricsContainer');
             lyricsContainer.innerHTML = '';
             words.forEach((word, i) => {
@@ -100,6 +104,7 @@ function drawConfetti() {
                 if (correct[i]) {
                     span.textContent = word + ' ';
                     span.classList.add('known');
+                    counter++;
                 } else if (giveUp) {
                     span.textContent = word + ' ';
                     span.classList.add('unknown');
@@ -111,6 +116,7 @@ function drawConfetti() {
                 }
                 lyricsContainer.appendChild(span);
             });
+            document.getElementById('uniqueAmount').textContent = `${counter}/${[new Set(words)[0].size}`;
             if(isfull) {
                 createConfetti();
                 drawConfetti();
