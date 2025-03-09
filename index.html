@@ -21,13 +21,13 @@
         <button id="backBtn">Back</button>
     </div>
     <script>
-        let lyricsData = {};
+        let lyricsData = [];
         let words = [];
         let correct = [];
 
         async function loadLyrics() {
             let response = await fetch('lyrics.json');
-            lyricsData = await JSON.parse(response);
+            lyricsData = await response.json();
         }
 
         document.getElementById('searchForm').addEventListener('submit', function(e) {
