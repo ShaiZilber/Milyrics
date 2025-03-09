@@ -21,6 +21,39 @@
         <button id="backBtn">Back</button>
     </div>
     <script>
+        const canvas = document.getElementById("confettiCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let confettiParticles = [];
+
+function createConfetti() {
+    for (let i = 0; i < 100; i++) {  // Number of confetti pieces
+        confettiParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 8 + 2,  // Random size
+            color: `hsl(${Math.random() * 360}, 100%, 60%)`,  // Random colors
+            speed: Math.random() * 3 + 2,
+            angle: Math.random() * 360
+        });
+    }
+}
+
+function drawConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confettiParticles.forEach((p, index) => {
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        p.y += p.speed;  // Move down
+        if (p.y > canvas.height) confettiParticles.splice(index, 1);
+    });
+    if (confettiParticles.length > 0) requestAnimationFrame(drawConfetti);
+}
+        
         let lyricsData = [];
         let words = [];
         let correct = [];
@@ -58,6 +91,7 @@
         }
 
         function updateLyricsDisplay(giveUp = false) {
+            let isfull = true;
             let lyricsContainer = document.getElementById('lyricsContainer');
             lyricsContainer.innerHTML = '';
             words.forEach((word, i) => {
@@ -67,12 +101,19 @@
                     span.classList.add('known');
                 } else if (giveUp) {
                     span.textContent = word + ' ';
+                    span.classList.add('unknown');
+                    isfull = false;
                 } else {
                     span.textContent = '____ ';
                     span.classList.add('unknown');
+                    isfull = false;
                 }
                 lyricsContainer.appendChild(span);
             });
+            if(isfull) {
+                createConfetti();
+                drawConfetti();
+            }
         }
 
         document.getElementById('userInput').addEventListener('input', function() {
