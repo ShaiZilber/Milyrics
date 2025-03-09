@@ -59,7 +59,7 @@ function drawConfetti() {
         let lyricsData = [];
         let words = [];
         let correct = [];
-
+        let counter = 0;
         async function loadLyrics() {
             let response = await fetch('lyrics.json');
             lyricsData = await response.json();
@@ -96,7 +96,7 @@ function drawConfetti() {
 
         function updateLyricsDisplay(giveUp = false) {
             let isfull = true;
-            let counter = 0;
+            
             let lyricsContainer = document.getElementById('lyricsContainer');
             lyricsContainer.innerHTML = '';
             words.forEach((word, i) => {
@@ -104,7 +104,6 @@ function drawConfetti() {
                 if (correct[i]) {
                     span.textContent = word + ' ';
                     span.classList.add('known');
-                    counter++;
                 } else if (giveUp) {
                     span.textContent = word + ' ';
                     span.classList.add('unknown');
@@ -131,6 +130,7 @@ function drawConfetti() {
                     this.value = '';
                 }
             });
+            counter++;
             updateLyricsDisplay();
 
         });
