@@ -124,13 +124,17 @@ function drawConfetti() {
 
         document.getElementById('userInput').addEventListener('input', function() {
             let inputValue = this.value.trim().toLowerCase();
+            let isCounter = false
             words.forEach((word, i) => {
                 if (word.toLowerCase() === inputValue && !correct[i]) {
                     correct[i] = true;
                     this.value = '';
+                    if(!isCounter) {
+                        counter++;
+                        isCounter = true;
+                    }
                 }
             });
-            counter++;
             updateLyricsDisplay();
 
         });
