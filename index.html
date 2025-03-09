@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milyrics</title>
-    <link rel="stylesheet" type="text/css" href="..\\static\\styles\\styles.css">
+    <link rel="stylesheet" type="text/css" href="static\\styles\\styles.css">
 </head>
 <body>
     <form id="searchForm">
@@ -26,8 +26,8 @@
         let correct = [];
 
         async function loadLyrics() {
-            let response = await fetch('lyrics.json').then(response => response.json()).then(data => console.log(data)).catch(error => console.error('Error loading JSON:', error));
-            lyricsData = await response.json();
+            let response = await fetch('lyrics.json');
+            lyricsData = await JSON.parse(response);
         }
 
         document.getElementById('searchForm').addEventListener('submit', function(e) {
@@ -52,7 +52,7 @@
             document.getElementById('songsList').style.display = 'none';
             document.getElementById('gameContainer').style.display = 'block';
             document.getElementById('songTitle').textContent = `${song.song} | ${song.artist}`;
-            words = song.words;
+            words = song.songs;
             correct = new Array(words.length).fill(false);
             updateLyricsDisplay();
         }
