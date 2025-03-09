@@ -5,7 +5,14 @@ body {
     background-color: darkgray;
     direction: rtl;
 }
-
+canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Allows clicks through the canvas */
+        }
 h5 {
     margin: 0px;
     margin-bottom: 5px;
