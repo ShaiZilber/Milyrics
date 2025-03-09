@@ -88,7 +88,7 @@ function drawConfetti() {
             document.getElementById('gameContainer').style.display = 'block';
             document.getElementById('songTitle').textContent = `${song.song} | ${song.artist}`;
             words = JSON.parse(song.songs.replace(/'/g, '"'));
-            document.getElementById('uniqueAmount').textContent = `0/${[new Set(words)[0].size}`;
+            document.getElementById('uniqueAmount').textContent = `0/${[new Set(words)][0].size}`;
             
             correct = new Array(words.length).fill(false);
             updateLyricsDisplay();
