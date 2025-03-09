@@ -116,7 +116,7 @@ function drawConfetti() {
                 }
                 lyricsContainer.appendChild(span);
             });
-            document.getElementById('uniqueAmount').textContent = `${counter}/${[new Set(words)[0].size}`;
+            document.getElementById('uniqueAmount').textContent = `${counter}/${[new Set(words)][0].size}`;
             if(isfull) {
                 createConfetti();
                 drawConfetti();
