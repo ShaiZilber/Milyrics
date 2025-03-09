@@ -64,7 +64,9 @@
                 let span = document.createElement('span');
                 if (correct[i] || giveUp) {
                     span.textContent = word + ' ';
-                    span.classList.add('known');
+                    if(!giveUp) {
+                        span.classList.add('known');
+                    }
                 } else {
                     span.textContent = '____ ';
                     span.classList.add('unknown');
@@ -78,10 +80,11 @@
             words.forEach((word, i) => {
                 if (word.toLowerCase() === inputValue && !correct[i]) {
                     correct[i] = true;
+                    this.value = '';
                 }
             });
             updateLyricsDisplay();
-            this.value = '';
+
         });
 
         document.getElementById('resetBtn').addEventListener('click', function() {
