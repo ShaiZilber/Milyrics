@@ -62,11 +62,11 @@
             lyricsContainer.innerHTML = '';
             words.forEach((word, i) => {
                 let span = document.createElement('span');
-                if (correct[i] || giveUp) {
+                if (correct[i]) {
                     span.textContent = word + ' ';
-                    if(!giveUp) {
-                        span.classList.add('known');
-                    }
+                    span.classList.add('known');
+                } else if (giveUp) {
+                    span.textContent = word + ' ';
                 } else {
                     span.textContent = '____ ';
                     span.classList.add('unknown');
